@@ -1,0 +1,21 @@
+{
+  "title": "Test Resource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Resource Identifier",
+      "type": "number"
+    },
+    "name": {
+      "title": "Some name",
+      "type": "string"
+    }
+  },
+  "required": ["id"],
+  "links": [
+    {
+      "rel": "self",
+      "href": "{id}"
+    }
+  ]
+}

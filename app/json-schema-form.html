@@ -1,0 +1,4 @@
+<p *ngFor="#key of props()">
+  {{schema.properties[key].title}}
+  <input type={{toInputType(schema.properties[key].type)}}>
+</p>
