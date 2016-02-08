@@ -10,6 +10,7 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
 
     <script>
       System.config({
@@ -26,7 +27,7 @@
 
   </head>
   <body>
-    <json-schema-form>
+    <json-schema-form [url]="/test-hyper-schema.json">
       Loading...
     </json-schema-form>
     

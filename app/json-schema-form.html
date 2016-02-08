@@ -1,4 +1,6 @@
-<p *ngFor="#key of props()">
-  {{schema.properties[key].title}}
-  <input type={{toInputType(schema.properties[key].type)}}>
+<p>{{schema | json}}</p>
+<p>{{entity | json}}</p>
+<p *ngFor="#keyValue of schema.properties | items">
+  {{keyValue.val.title}}
+  <input type={{toInputType(keyValue.val.type)}} [(ngModel)]="entity[keyValue.key]">
 </p>
