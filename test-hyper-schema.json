@@ -4,11 +4,19 @@
   "properties": {
     "id": {
       "title": "Resource Identifier",
-      "type": "number"
+      "type": "number",
+      "minimum": 5,
+      "maximum": 10
     },
     "name": {
       "title": "Some name",
       "type": "string"
+    },
+    "label": {
+      "enum": ["one", "two", "three"]
+    },
+    "label2": {
+      "enum": ["one", "two", "three"]
     }
   },
   "required": ["id"],
