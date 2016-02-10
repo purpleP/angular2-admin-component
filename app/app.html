@@ -5,5 +5,5 @@
 <json-schema-form
   max-radio-button-count="3"
   [schema]="schema">
-  [(entity)]="entity"
+  (entityChange)="entity = $event"
 </json-schema-form>

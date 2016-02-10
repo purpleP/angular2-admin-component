@@ -1,3 +1,4 @@
+<p>{{entity | json}}</p>
 <div *ngFor="#keyValue of schema.properties | items">
   {{keyValue.val.title}}
   <div [ngSwitch]="toInputType(keyValue.val)">
@@ -30,7 +31,7 @@
     </template>
     <p></p>
     <template ngSwitchWhen="select">
-      <select #sel (change)="entity[keyValue.key] = sel.value">
+      <select #sel (change)="updateEntity(keyValue.key, sel.value)">
         <option #sel *ngFor="#x of keyValue.val.enum">{{x}}</option>
       </select>
     </template>
@@ -38,7 +39,7 @@
       <json-schema-form
         max-radio-button-count="maxRadioButtonCount"
         [schema]="keyValue.val"
-        [(entity)]="entity[keyValue.key]"
+        (entityChange)="updateEntity(keyValue.key, $event)"
         >
       </json-schema-form>
     </template>
