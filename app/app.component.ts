@@ -13,8 +13,8 @@ export class AppComponent {
     constructor(http_: Http) {
         this.http = http_;
     }
-    entity = {
-        lala: 'lalal'
+    update(event) {
+        console.log(event);
     }
     ngOnInit() {
         this.http.get(this.url)

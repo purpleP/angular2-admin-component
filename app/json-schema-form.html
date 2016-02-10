@@ -1,4 +1,3 @@
-<p>{{entity | json}}</p>
 <div *ngFor="#keyValue of schema.properties | items">
   {{keyValue.val.title}}
   <div [ngSwitch]="toInputType(keyValue.val)">
