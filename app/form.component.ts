@@ -17,11 +17,12 @@ export class FormComponent implements OnInit{
         }
         this.entity = Object.keys(this.schema.properties).reduce(
             function(pv, cv) {
-                if (cv.type != 'object') {
-                    pv[cv] = null
+                if (cv.type == 'object') {
+                    pv[cv] = {}
+                    return pv
                 }
                 else {
-                    pv[cv] = {}
+                    return {}
                 }
             },
             {}
