@@ -1,22 +1,20 @@
-<p>{{schema | json}}</p>
-<p>{{entity | json}}</p>
-
 <div *ngFor="#keyValue of schema.properties | items">
   {{keyValue.val.title}}
   <div [ngSwitch]="toInputType(keyValue.val)">
     <template ngSwitchWhen="number">
       <input
+        #i
         type="number"
-        [(ngModel)]="entity[keyValue.key]"
+        (input)="updateEntity(keyValue.key, i.value)"
         min={{keyValue.val.minimum}}
         max={{keyValue.val.maximum}}
       />
     </template>
     <template ngSwitchWhen="text">
       <input
+        #i
         type="text"
-        value="{{entity[keyValue.key]}}"
-        [(ngModel)]="entity[keyValue.key]"
+        (input)="updateEntity(keyValue.key, i.value)"
       />
     </template>
     <template ngSwitchWhen="radio">
@@ -30,6 +28,7 @@
         />{{x}}
       </div>
     </template>
+    <p></p>
     <template ngSwitchWhen="select">
       <select #sel (change)="entity[keyValue.key] = sel.value">
         <option #sel *ngFor="#x of keyValue.val.enum">{{x}}</option>
@@ -39,7 +38,7 @@
       <json-schema-form
         max-radio-button-count="maxRadioButtonCount"
         [schema]="keyValue.val"
-        [entity]="entity[keyValue.key]"
+        [(entity)]="entity[keyValue.key]"
         >
       </json-schema-form>
     </template>

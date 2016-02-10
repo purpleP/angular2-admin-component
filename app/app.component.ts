@@ -13,6 +13,9 @@ export class AppComponent {
     constructor(http_: Http) {
         this.http = http_;
     }
+    entity = {
+        lala: 'lalal'
+    }
     ngOnInit() {
         this.http.get(this.url)
         .subscribe(resp => this.schema = resp.json());

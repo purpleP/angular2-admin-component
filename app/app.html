@@ -1,1 +1,9 @@
-<json-schema-form max-radio-button-count="3" [schema]="schema"></json-schema-form>
+<p>
+  Hellow
+  {{entity | json}}
+</p>
+<json-schema-form
+  max-radio-button-count="3"
+  [schema]="schema">
+  [(entity)]="entity"
+</json-schema-form>

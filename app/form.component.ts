@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input, Output, OnInit, EventEmitter} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/angular2';
 import {ItemsPipe} from './pipe';
 
@@ -10,6 +10,10 @@ import {ItemsPipe} from './pipe';
 })
 
 export class FormComponent implements OnInit{
+
+    constructor() {
+        this.entityChange = new EventEmitter()
+    }
 
     ngOnInit() {
         if (this.maxRadioButtonCount == null) {
@@ -31,6 +35,7 @@ export class FormComponent implements OnInit{
     }
     @Input('max-radio-button-count') maxRadioButtonCount
     @Input() schema
+    @Output() entityChange;
     mapping = {
         string: 'text',
         number: 'number',
@@ -40,7 +45,11 @@ export class FormComponent implements OnInit{
     @Input() entity = {}
     isMappableToInput = function(schemaType) {
         return Object.keys(this.mapping).some(key => key == schemaType);
-    };
+    }
+    updateEntity(key, value) {
+        this.entity[key] = value
+        this.entityChange.emit(this.entity)
+    }
     toInputType = function(property) {
         if (property.hasOwnProperty('type')) {
             return this.mapping[property.type]
@@ -55,5 +64,6 @@ export class FormComponent implements OnInit{
                 }
             }
         }
-    };
+    }
+
 }
