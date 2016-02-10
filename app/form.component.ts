@@ -15,7 +15,18 @@ export class FormComponent implements OnInit{
         if (this.maxRadioButtonCount == null) {
             this.maxRadioButtonCount = 5
         }
-        console.log(this.schema);
+        this.entity = Object.keys(this.schema.properties).reduce(
+            function(pv, cv) {
+                if (cv.type != 'object') {
+                    pv[cv] = null
+                }
+                else {
+                    pv[cv] = {}
+                }
+            },
+            {}
+        )
+        console.log(this.entity);
     }
     @Input('max-radio-button-count') maxRadioButtonCount
     @Input() schema
@@ -25,7 +36,7 @@ export class FormComponent implements OnInit{
         integer: 'number',
         object: 'object',
     }
-    entity = {}
+    @Input() entity = {}
     isMappableToInput = function(schemaType) {
         return Object.keys(this.mapping).some(key => key == schemaType);
     };
