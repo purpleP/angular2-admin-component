@@ -1,40 +1,24 @@
 import {Component, Input, OnInit} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {CORE_DIRECTIVES} from 'angular2/angular2';
 import {ItemsPipe} from './pipe';
 
 @Component({
     selector: 'json-schema-form',
-    viewProviders: [HTTP_PROVIDERS],
     templateUrl: 'app/json-schema-form.html',
+    directives: [FormComponent],
     pipes: [ItemsPipe],
 })
 
 export class FormComponent implements OnInit{
 
-    constructor(http_: Http) {
-        this.http = http_;
-    }
     ngOnInit() {
         if (this.maxRadioButtonCount == null) {
             this.maxRadioButtonCount = 5
-            console.log(this.maxRadioButtonCount)
         }
-        console.log(this.maxRadioButtonCount)
-        this.http.get(this.url)
-        .subscribe(resp => this.schema = resp.json());
+        console.log(this.schema);
     }
-    http = {}
-    @Input() url
     @Input('max-radio-button-count') maxRadioButtonCount
-    schema = {
-        properties: {
-            id: {
-                type: 'number',
-                title: 'Resource id',
-            }
-        },
-    }
+    @Input() schema
     mapping = {
         string: 'text',
         number: 'number',

@@ -17,6 +17,20 @@
     },
     "label2": {
       "enum": ["one", "two", "three"]
+    },
+    "composite": {
+      "title": "Composite",
+      "type": "object",
+      "properties": {
+        "foo": {
+          "title": "Foo Property",
+          "type": "string"
+        },
+        "bar": {
+          "title": "Bar Property",
+          "type": "number"
+        }
+      }
     }
   },
   "required": ["id"],

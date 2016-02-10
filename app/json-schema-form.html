@@ -35,5 +35,12 @@
         <option #sel *ngFor="#x of keyValue.val.enum">{{x}}</option>
       </select>
     </template>
+    <template ngSwitchWhen="object">
+      <json-schema-form
+        max-radio-button-count="maxRadioButtonCount"
+        [schema]="keyValue.val"
+        >
+      </json-schema-form>
+    </template>
   </div>
 </div>
